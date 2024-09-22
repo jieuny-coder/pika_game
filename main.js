@@ -46,13 +46,21 @@ function ready_thunder(){
     // 번개가 발사할때마다 체크하기 
     this.checkHit = function(){
         for(let i=0; i< poketballList.length; i++){
-            if(this.y <= poketballList[i].y && this.x >= poketballList[i].x && this.x <= poketballList[i].x+40){
-                // 점수 누적시키고
-                score++
-                // 번개랑 포켓볼 사라지게 만들기
-                this.alive = false //소멸될 번개
-                poketballList.splice(i,1) //포켓볼리스트에서 i번째에 있는 1개를 잘라내겠다!
-            }
+            let pokeball = poketballList[i];
+        
+        // 충돌 판정 조건: 번개가 포켓볼과 X, Y 좌표에서 모두 겹칠 때만 충돌로 처리
+        if (this.y <= pokeball.y + 40 && this.y >= pokeball.y && // Y 좌표가 포켓볼의 Y 좌표 범위 내에 있어야 함
+            this.x >= pokeball.x && this.x <= pokeball.x + 40) { // X 좌표가 포켓볼의 X 좌표 범위 내에 있어야 함
+            
+            // 점수 누적시키고
+            score++;
+            
+            // 번개와 포켓볼을 사라지게 만들기
+            this.alive = false; // 소멸될 번개
+            poketballList.splice(i, 1); // 포켓볼 리스트에서 i번째에 있는 1개를 제거
+            
+            break; // 이미 충돌한 포켓볼은 더 이상 체크하지 않도록 반복문 탈출
+        }
         }
     }
 }
