@@ -114,7 +114,7 @@ function loadImage() {
 
         // 공격번개 이미지
         ThunderImage = new Image();
-        ThunderImage.src = './images/Thunder.png';
+        ThunderImage.src = './images/thunder.png';
         ThunderImage.onload = checkImagesLoaded;
 
         // 게임오버 이미지
