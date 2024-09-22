@@ -193,7 +193,7 @@ function update(){
 
     // 번개y좌표 업데이트하는 함수 호출
     for(let i=0 ; i < thunderList.length; i++){
-        if(thunderList[i].alive){
+        if(thunderList[i].alive && poketballList.length >0){ //포켓볼이 있을때만 충돌체크
             thunderList[i].update();
             // 번개가 포켓볼 쳤는지 안쳤는지 확인
             thunderList[i].checkHit();
